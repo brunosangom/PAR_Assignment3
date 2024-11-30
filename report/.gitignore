@@ -1,0 +1,106 @@
+# LaTeX temporary files
+*.bcf
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# BibTeX
+*.bbl
+*.blg
+
+# PDF output (if you don't want to track the compiled PDF)
+# *.pdf
+
+# LaTeX Beamer
+*.nav
+*.snm
+*.vrb
+
+# LaTeX package manager (tlmgr) auxiliary files
+*.tlmgr
+
+# Algorithm2e
+*.alg
+*.loa
+
+# lstlisting environment
+*.lol
+
+# Latexmk
+*.fdb_latexmk
+*.synctex(busy)
+
+# SyncTeX
+*.synctex.gz(busy)
+
+# LaTeX Makeindex
+*.idx
+*.ilg
+*.ind
+*.ist
+
+# glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+
+# hyperref
+*.brf
+
+# minted
+_minted*
+*.pyg
+
+# VSCode specific
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Report:
+main.synctex.gz
+main.log
+main.aux
+main.out
+main.toc
+main.bbl
+main.blg
+main.run.xml
+main.fdb_latexmk
+main.fls
+main.lot
+main.lof
+main.nav
+main.snm
+main.vrb
+main.pyg
+main.mw
+main.mw2
+main.mw3
+main.mw4
+main.mw5
+main.pdf
+main.mw6
+

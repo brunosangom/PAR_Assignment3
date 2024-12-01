@@ -49,21 +49,13 @@
 In this task, we define the input and output linguistic variables for our fuzzy expert system designed to detect phishing on websites. Based on the features identified in \cite{Hannousse2020-eq}, we have selected a subset of five features, each with different reference scales and units, to serve as input variables. For each variable, we have determined the number of terms, labels, and corresponding fuzzy sets using trapezoidal membership function in the (a, b, c, d) format, ensuring they satisfy the property of Fuzzy Partition.
 
 
-% Define the input and output linguistic variables.
-% - Select a subset of five features from the literature.
-% - Represent them as input linguistic variables with different scales and units.
-% - Decide the number of terms, labels, and corresponding fuzzy sets.
-% - Ensure the fuzzy partition property is satisfied.
-% - For the output variable, define four fuzzy categories and a numerical score ranging from 0 to 100.
-% - Use triangular and trapezoidal membership functions in the (a, b, c, d) format.
-
 \subsection{Input Linguistic Variables}
 
 For our fuzzy phishing detection system, we have carefully selected five input linguistic variables that capture key characteristics of websites commonly exploited in phishing attacks. Each variable represents a different aspect of website legitimacy, from structural elements to reputation indicators. The variables have been chosen to provide complementary signals while maintaining interpretability. We specifically selected non-binary features because binary features cannot be effectively represented using triangular or trapezoidal membership functions.
 
 \subsubsection{Ratio of Null Hyperlinks}
 
-This variable (f60) measures the percentage of non-functional links within a webpage, a common indicator of malicious intent. High proportions of null links often indicate hastily created phishing pages. The variable ranges from 0 to 100 percent and is characterized by three linguistic terms with trapezoidal membership functions:
+The variable f60 measures the percentage of non-functional or empty links within a webpage. As identified in \cite{Hannousse2020-eq}, this feature is particularly significant for phishing detection as it reflects both the structural integrity and maintenance quality of a website. Legitimate websites typically maintain their hyperlinks carefully, while phishing sites often contain numerous broken or placeholder links due to hasty creation or poor maintenance. The range spans from 0 to 100 percent and is characterized by three linguistic terms with trapezoidal membership functions:
 
 \begin{table}[H]
 \centering
@@ -115,7 +107,8 @@ High & [45, 55, 100, 100] & Strong indicator of a phishing webpage. A high ratio
 
 \subsubsection{Number of External CSS Files}
 
-The variable f61 quantifies external stylesheet references, as legitimate websites typically maintain consistent styling through multiple CSS files. The range spans from 0 to 20 files, with three linguistic terms:
+The variable f61 quantifies external stylesheet references in a webpage. This feature is particularly relevant for phishing detection as legitimate websites typically maintain consistent styling through multiple CSS files, following modern web development practices. Phishing websites, in contrast, often minimize their styling implementation to quickly replicate legitimate pages with minimal effort. Additionally, as noted in \cite{10049452}, the number of external stylesheets can indicate the level of sophistication and development effort invested in the website, where an unusually low number might signal a hastily created phishing page. The range spans from 0 to 20 files, with three linguistic terms:
+
 
 \begin{table}[H]
 \centering
@@ -167,7 +160,7 @@ Normal & [3, 4, 8, 8] & Characteristic of properly developed sites with comprehe
     
 \subsubsection{Domain Registration Length}
 
-This variable (f82) reflects the duration of domain registration in years, as phishing sites often use short-term registrations. The range spans 1 to 10 years and is characterized by three linguistic terms with trapezoidal membership functions:
+The variable f82 reflects the duration of domain registration in years. According to \cite{8036198}, domain registration length is a crucial temporal feature for phishing detection, as legitimate websites tend to be registered for longer periods while phishing domains are typically short-lived. As noted in \cite{10049452}, attackers often register domains for the minimum required period to minimize costs and avoid detection, making registration length a strong indicator of potentially malicious intent. This pattern emerges because phishing campaigns are typically brief, targeted operations that don't require long-term domain maintenance. The range spans from 1 to 10 years and is characterized by the following:
 
 \begin{table}[H]
 \centering
@@ -214,7 +207,8 @@ Long & [5, 7, 10, 10] & Typical of established legitimate websites. Long registr
 
 \subsubsection{Web Traffic}
 
-This variable (f84) measures the percentile rank of a website's traffic, as higher traffic is typically associated with more reputable sites. The range spans from 0 to 100 percentiles and is characterized by four linguistic terms with trapezoidal membership functions:
+The variable f84 measures the percentile rank of a website's traffic. Web traffic is a significant indicator of website legitimacy as it reflects the site's established presence and user trust. As noted in \cite{10049452}, phishing websites typically exhibit very low traffic patterns due to their short lifespan and targeted nature, while legitimate websites maintain consistent traffic levels over time. This metric is particularly valuable because it's difficult for attackers to artificially inflate genuine user traffic, making it a reliable indicator of legitimacy. The range spans from 0 to 100 percentiles and is characterized by four linguistic terms with trapezoidal membership functions:
+
 
 \begin{table}[H]
 \centering
@@ -274,7 +268,7 @@ High & [80, 90, 100, 100] & Characteristic of popular and reputable websites. Hi
 
 \subsubsection{Page Rank}
 
-This variable (f87) measures the popularity score of a website, ranging from 0 to 10. Higher page ranks are typically associated with more reputable and well-known websites. The range spans from 0 to 10 and is characterized by three linguistic terms with trapezoidal membership functions:
+The variable f87 measures the popularity score of a website, ranging from 0 to 10. This feature is meaninglful for phishing detection as it quantifies a website's reputation based on its relationships with other sites across the internet. While legitimate websites naturally accumulate higher page ranks through genuine backlinks and long-term presence, phishing sites typically have very low page ranks due to their recent creation and lack of legitimate connections. Unlike many other metrics, page rank is particularly difficult to manipulate as it requires building a genuine network of trusted referring sites. The range spans from 0 to 10 and is characterized by three linguistic terms with trapezoidal membership functions:
 
 \begin{table}[H]
 \centering
@@ -397,62 +391,77 @@ Phishing & [65, 75, 100, 100] & Indicates a high risk of phishing. Websites in t
 
 \subsection{Rule Development}
 
-% Discuss the methodology used to develop the rules.
-% Explain how evidence from literature supports the rule definitions. -> Need references
+The rule base for the fuzzy expert system was developed using a systematic methodology to accurately assess phishing risk while maintaining manageability. Five critical input variables were identified: Ratio of Null Hyperlinks, Number of External CSS Files, Domain Registration Length, Web Traffic, and Page Rank. Each variable was defined with appropriate linguistic terms and membership functions to handle uncertainty. Conjunctive rules were formulated by logically combining these variables' linguistic terms to reflect how different conditions contribute to phishing risk; for example, a high ratio of null hyperlinks and a short domain registration length indicate a potential phishing site. The output variable, Phishing Risk, was specified using linguistic terms ranging from Very Low to Very High based on the expected influence of input conditions. To cover a wide range of scenarios, including both typical cases and edge conditions, the rule set includes rules of varying lengths and complexities, enhancing the system's flexibility and responsiveness. Redundant or conflicting rules were eliminated to maintain the integrity of the rule base. The total number of rules was limited to 35 for manageability.
 
 \subsection{Complete Rule Set}
-
-WORK IN PROGRESS, THIS COMPLETE RULE SET IS NOT FINAL
 
 \begin{table}[H]
 \centering
 \footnotesize
 \setlength{\extrarowheight}{1pt}
-\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{0.04\textwidth}|>{\raggedright\arraybackslash}p{0.12\textwidth}|>{\raggedright\arraybackslash}p{0.12\textwidth}|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.12\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.12\textwidth}|}
+\rowcolors{2}{gray!10}{white}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{0.03\textwidth}|%
+>{\raggedright\arraybackslash}p{0.15\textwidth}|%
+>{\raggedright\arraybackslash}p{0.10\textwidth}|%
+>{\raggedright\arraybackslash}p{0.13\textwidth}|%
+>{\raggedright\arraybackslash}p{0.10\textwidth}|%
+>{\raggedright\arraybackslash}p{0.15\textwidth}|%
+>{\raggedright\arraybackslash}p{0.12\textwidth}|}
 \hline
 \rowcolor{gray!30}
 \textbf{\#} & \textbf{Null Links} & \textbf{Ext. CSS} & \textbf{Domain Reg.} & \textbf{Traffic} & \textbf{Page Rank} & \textbf{Risk} \\ \hline
-\textbf{1}  & High      & Very Few & Short  & Very Low    & Not very known   & Very High     \\\rowcolor{lightgray}
-\textbf{2}  & High      & Few      & Short  & Low         & Not very known   & Very High     \\
-\textbf{3}  & High      & Normal   & Short  & Moderate    & Not very known   & Very High     \\\rowcolor{lightgray}
-\textbf{4}  & High      & Very Few & Medium & Low         & Moderately known & High          \\
-\textbf{5}  & High      & Few      & Medium & Moderate    & Moderately known & High          \\\rowcolor{lightgray}
-\textbf{6}  & High      & Normal   & Medium & High        & Moderately known & High          \\
-\textbf{7}  & High      & Very Few & Long   & Moderate    & Popular          & Moderate      \\\rowcolor{lightgray}
-\textbf{8}  & High      & Few      & Long   & High        & Popular          & Moderate      \\
-\textbf{9}  & High      & Normal   & Long   & High        & Popular          & Moderate      \\\rowcolor{lightgray}
-\textbf{10} & Moderate  & Very Few & Short  & Very Low    & Not very known   & High          \\
-\textbf{11} & Moderate  & Few      & Short  & Low         & Not very known   & High          \\\rowcolor{lightgray}
-\textbf{12} & Moderate  & Normal   & Short  & Moderate    & Not very known   & High          \\
-\textbf{13} & Moderate  & Very Few & Medium & Low         & Moderately known & Moderate      \\\rowcolor{lightgray}
-\textbf{14} & Moderate  & Few      & Medium & Moderate    & Moderately known & Moderate      \\
-\textbf{15} & Moderate  & Normal   & Medium & High        & Moderately known & Moderate      \\\rowcolor{lightgray}
-\textbf{16} & Moderate  & Very Few & Long   & Moderate    & Popular          & Low           \\
-\textbf{17} & Moderate  & Few      & Long   & High        & Popular          & Low           \\\rowcolor{lightgray}
-\textbf{18} & Moderate  & Normal   & Long   & High        & Popular          & Low           \\
-\textbf{19} & Low       & Very Few & Short  & Very Low    & Not very known   & Moderate      \\\rowcolor{lightgray}
-\textbf{20} & Low       & Few      & Short  & Low         & Not very known   & Moderate      \\
-\textbf{21} & Low       & Normal   & Short  & Moderate    & Not very known   & Moderate      \\\rowcolor{lightgray}
-\textbf{22} & Low       & Very Few & Medium & Low         & Moderately known & Low           \\
-\textbf{23} & Low       & Few      & Medium & Moderate    & Moderately known & Low           \\\rowcolor{lightgray}
-\textbf{24} & Low       & Normal   & Medium & High        & Moderately known & Low           \\
-\textbf{25} & Low       & Very Few & Long   & Moderate    & Popular          & Very Low      \\\rowcolor{lightgray}
-\textbf{26} & Low       & Few      & Long   & High        & Popular          & Very Low      \\
-\textbf{27} & Low       & Normal   & Long   & High        & Popular          & Very Low      \\\rowcolor{lightgray}
-\textbf{28} & High      & Very Few & Short  & High        & Not very known   & Very High     \\
-\textbf{29} & Moderate  & Few      & Medium & Very Low    & Moderately known & High          \\\rowcolor{lightgray}
-\textbf{30} & Low       & Normal   & Long   & Very Low    & Popular          & Low           \\
-\textbf{31} & High      & Few      & Medium & Very Low    & Not very known   & Very High     \\\rowcolor{lightgray}
-\textbf{32} & Moderate  & Normal   & Short  & High        & Moderately known & High          \\
-\textbf{33} & Low       & Very Few & Medium & Very Low    & Moderately known & Moderate      \\\rowcolor{lightgray}
-\textbf{34} & High      & Normal   & Long   & Low         & Popular          & Moderate      \\
-\textbf{35} & Low       & Few      & Short  & High        & Not very known   & Moderate      \\
-\hline
+\textbf{1}  & High & Very Few & Short & Very Low & Not very known & \textbf{Phishing} \\ \hline
+\textbf{2}  & High & Few & Short & Very Low & Not very known & \textbf{Phishing} \\ \hline
+\textbf{3}  & High & Very Few & Medium & Very Low & Not very known & \textbf{Phishing} \\ \hline
+\textbf{4}  & High & Few & Medium & Low & Not very known & \textbf{Phishing} \\ \hline
+\textbf{5}  & Moderate & Very Few & Short & Very Low & Not very known & \textbf{Phishing} \\ \hline
+\textbf{6}  & High & Normal & Short & Low & Not very known & \textbf{Phishing} \\ \hline
+\textbf{7}  & High & Normal & Medium & Low & Not very known & \textbf{Strongly Suspicious} \\ \hline
+\textbf{8}  & High & Few & Long & Low & Not very known & \textbf{Strongly Suspicious} \\ \hline
+\textbf{9}  & High & Very Few & Long & Moderate & Moderately known & \textbf{Strongly Suspicious} \\ \hline
+\textbf{10} & Moderate & Few & Short & Low & Not very known & \textbf{Strongly Suspicious} \\ \hline
+\textbf{11} & Moderate & Very Few & Medium & Low & Not very known & \textbf{Strongly Suspicious} \\ \hline
+\textbf{12} & High & Normal & Long & Moderate & Moderately known & \textbf{Strongly Suspicious} \\ \hline
+\textbf{13} & Moderate & Few & Medium & Low & Moderately known & \textbf{Weakly Suspicious} \\ \hline
+\textbf{14} & Moderate & Normal & Medium & Moderate & Moderately known & \textbf{Weakly Suspicious} \\ \hline
+\textbf{15} & Moderate & Few & Long & Low & Moderately known & \textbf{Weakly Suspicious} \\ \hline
+\textbf{16} & Low & Very Few & Short & Moderate & Moderately known & \textbf{Weakly Suspicious} \\ \hline
+\textbf{17} & Low & Few & Medium & Low & Moderately known & \textbf{Weakly Suspicious} \\ \hline
+\textbf{18} & Moderate & Normal & Long & Low & Popular & \textbf{Weakly Suspicious} \\ \hline
+\textbf{19} & Low & Very Few & Long & Moderate & Popular & \textbf{Weakly Suspicious} \\ \hline
+\textbf{20} & Moderate & Few & Long & Moderate & Popular & \textbf{Weakly Suspicious} \\ \hline
+\textbf{21} & Low & Normal & Long & High & Popular & \textbf{Safe} \\ \hline
+\textbf{22} & Low & Few & Long & High & Popular & \textbf{Safe} \\ \hline
+\textbf{23} & Low & Normal & Medium & High & Popular & \textbf{Safe} \\ \hline
+\textbf{24} & Moderate & Normal & Long & High & Popular & \textbf{Safe} \\ \hline
+\textbf{25} & Low & Few & Medium & High & Popular & \textbf{Safe} \\ \hline
+\textbf{26} & Low & Normal & Long & Moderate & Popular & \textbf{Safe} \\ \hline
+\textbf{27} & Moderate & Normal & Long & Moderate & Popular & \textbf{Safe} \\ \hline
+\textbf{28} & Low & Few & Long & Moderate & Popular & \textbf{Safe} \\ \hline
+\textbf{29} & Low & Normal & Medium & Moderate & Popular & \textbf{Safe} \\ \hline
+\textbf{30} & Low & Few & Medium & Moderate & Popular & \textbf{Safe} \\ \hline
 \end{tabularx}
 \caption{Complete Rule Set for Phishing Detection}
 \label{tab:complete_rule_set}
 \end{table}
 
+\subsection{Rule Set Design Rationale}
+
+The development of our fuzzy rule set was guided by a comprehensive analysis of the practical constraints and resources required for attackers to manipulate various website features. By understanding the cost-benefit relationships from an attacker's perspective, we were able to establish a hierarchy of feature importance and create rules that reflect real-world attack patterns.
+
+Our approach began by analyzing each feature through the lens of attacker constraints, considering the financial costs, technical complexity, and time investments required to manipulate them. This analysis directly influenced how we weighted and combined features in our rule set.
+
+Domain registration length emerged as a significant indicator due to its direct financial implications. Attackers typically aim to minimize operational costs, making long-term domain registrations financially unattractive. Legitimate businesses often register domains for extended periods, while phishing operations tend to use short-term registrations to reduce expenses. However, we recognize that this feature alone is insufficient for classification, as demonstrated by our rules where short registration periods are offset by other positive indicators.
+
+Web traffic presents a more complex scenario for classification. While it can be artificially inflated through various means, including advertising campaigns, bot networks, and embedding techniques, these methods require financial investment. This understanding influenced our rule design, where high traffic alone does not guarantee a safe classification without corroborating positive indicators from other features. Attackers can potentially manipulate traffic through paid advertising or automated tools, making it a valuable but not definitive indicator.
+
+Page rank represents a more resilient metric due to its multifaceted nature. While traffic manipulation can influence page rank, achieving high rankings in search engine results requires sophisticated SEO strategies and sustained effort. The technical expertise and time investment required for SEO manipulation makes this feature particularly valuable in our classification system, especially when combined with other positive indicators.
+
+The ratio of null hyperlinks serves as a crucial technical indicator. Modern web scraping tools like HTTrack \cite{httrack} and GoClone \cite{goclone} can easily copy website structures, but often result in broken or placeholder links (\textit{href="\#"}). This pattern emerges when attackers hastily replicate legitimate sites without properly maintaining link functionality. Our rules heavily weight this feature, as high ratios of null hyperlinks strongly suggest automated copying typical of phishing attempts.
+
+External CSS file count provides insight into website development practices. While tools can copy entire CSS files, maintaining multiple external stylesheets represents a level of development sophistication typically associated with legitimate websites. Phishing sites often consolidate CSS to simplify deployment, making the number of external stylesheets a useful discriminator between legitimate and malicious sites.
+
+These understandings directly shaped our rule set structure. High-risk classifications (Phishing) typically require multiple high-cost negative indicators, such as a high ratio of null hyperlinks combined with short domain registration and very few CSS files. Moderate-risk classifications (Strongly Suspicious) often involve mixed signals, where some high-cost features appear legitimate while others show suspicious patterns. Low-risk classifications (Safe) generally require multiple positive indicators that would be costly or time-consuming for attackers to fake simultaneously.
 
 \section{Task 3: Implementation Using MATLAB Fuzzy Toolkit}
 

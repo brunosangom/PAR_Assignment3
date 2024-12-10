@@ -1,0 +1,94 @@
+[System]
+Name='PhishingFuzzyExpertSystem'
+Type='mamdani'
+Version=2.0
+NumInputs=5
+NumOutputs=1
+NumRules=2
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Ratio of Null Hyperlinks'
+Range=[0 100]
+NumMFs=3
+MF1='Low':'trapmf',[0 0 10 25]
+MF2='Moderate':'trapmf',[10 25 45 50]
+MF3='High':'trapmf',[45 50 100 100]
+
+[Input2]
+Name='Number of External CSS'
+Range=[0 8]
+NumMFs=3
+MF1='Very Few':'trapmf',[0 0 1 2]
+MF2='Few':'trapmf',[1 2 3 4]
+MF3='Normal':'trapmf',[3 4 8 8]
+
+[Input3]
+Name='Domain Registration Length'
+Range=[0 10]
+NumMFs=3
+MF1='Short':'trapmf',[1 1 2 3]
+MF2='Medium':'trapmf',[2 3 5 7]
+MF3='Long':'trapmf',[5 7 10 10]
+
+[Input4]
+Name='Web Traffic'
+Range=[0 100]
+NumMFs=4
+MF1='Very Low':'trapmf',[0 0 10 20]
+MF2='Low':'trapmf',[10 20 60 70]
+MF3='Moderate':'trapmf',[60 70 80 90]
+MF4='High':'trapmf',[80 90 100 100]
+
+[Input5]
+Name='Page Rank'
+Range=[0 10]
+NumMFs=3
+MF1='Popular':'trapmf',[0 0 2 3]
+MF2='Moderately Known':'trapmf',[2 3 5 7]
+MF3='Not Very Known':'trapmf',[5 7 10 10]
+
+[Output1]
+Name='Phishing Risk'
+Range=[0 100]
+NumMFs=4
+MF1='Safe':'trapmf',[0 0 15 25]
+MF2='Weakly Suspicious':'trapmf',[15 25 35 45]
+MF3='Strongly Suspicious':'trapmf',[35 45 65 75]
+MF4='Phishing':'trapmf',[65 75 100 100]
+
+[Rules]
+3 1 1 1 3, 4 (1) : 1
+3 2 1 1 3, 4 (1) : 1
+3 1 2 1 3, 4 (1) : 1
+3 2 2 2 3, 4 (1) : 1
+2 1 1 1 3, 4 (1) : 1
+3 3 1 2 3, 4 (1) : 1
+3 3 2 2 3, 3 (1) : 1
+3 2 3 2 3, 3 (1) : 1
+3 1 3 3 2, 3 (1) : 1
+2 2 1 2 3, 3 (1) : 1
+2 1 2 2 3, 3 (1) : 1
+3 3 3 3 2, 3 (1) : 1
+2 2 2 2 2, 2 (1) : 1
+2 3 2 3 2, 2 (1) : 1
+2 2 3 2 2, 2 (1) : 1
+1 1 1 3 2, 2 (1) : 1
+1 2 2 2 2, 2 (1) : 1
+2 3 3 2 1, 2 (1) : 1
+1 1 3 3 1, 2 (1) : 1
+2 2 3 3 1, 2 (1) : 1
+1 3 3 4 1, 1 (1) : 1
+1 2 3 4 1, 1 (1) : 1
+1 3 2 4 1, 1 (1) : 1
+2 3 3 4 1, 1 (1) : 1
+1 2 2 4 1, 1 (1) : 1
+1 3 3 3 1, 1 (1) : 1
+2 3 3 3 1, 1 (1) : 1
+1 2 3 3 1, 1 (1) : 1
+1 3 2 3 1, 1 (1) : 1
+1 2 2 3 1, 1 (1) : 1

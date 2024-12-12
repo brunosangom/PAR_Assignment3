@@ -1,0 +1,35 @@
+null_links,ext_css,domain_reg,traffic,page_rank
+Moderate,Few,Short,Very Low,Moderately Known
+Moderate,Few,Short,Very Low,Not Very Known
+Moderate,Few,Short,Low,Moderately Known
+Moderate,Few,Short,Low,Not Very Known
+Moderate,Few,Short,Moderate,Moderately Known
+Moderate,Few,Short,Moderate,Not Very Known
+Moderate,Few,Medium,Very Low,Moderately Known
+Moderate,Few,Medium,Very Low,Not Very Known
+Moderate,Few,Medium,Low,Moderately Known
+Moderate,Few,Medium,Low,Not Very Known
+Moderate,Few,Medium,Moderate,Moderately Known
+Moderate,Few,Medium,Moderate,Not Very Known
+Moderate,Normal,Short,Very Low,Moderately Known
+Moderate,Normal,Short,Very Low,Not Very Known
+Moderate,Normal,Short,Low,Moderately Known
+Moderate,Normal,Short,Low,Not Very Known
+Moderate,Normal,Short,Moderate,Moderately Known
+Moderate,Normal,Short,Moderate,Not Very Known
+Moderate,Normal,Short,High,Moderately Known
+Moderate,Normal,Short,High,Not Very Known
+Moderate,Normal,Medium,Very Low,Moderately Known
+Moderate,Normal,Medium,Very Low,Not Very Known
+Moderate,Normal,Medium,Low,Moderately Known
+Moderate,Normal,Medium,Low,Not Very Known
+Moderate,Normal,Medium,Moderate,Moderately Known
+Moderate,Normal,Medium,Moderate,Not Very Known
+Moderate,Normal,Medium,High,Moderately Known
+Moderate,Normal,Medium,High,Not Very Known
+High,*,*,*,*
+*,*,*,*,Popular
+Low,*,*,*,*
+*,Very Few,*,*,*
+*,Few,*,High,*
+*,*,Long,*,*

@@ -31,7 +31,7 @@
 \begin{document}
 
 \title{PAR - Assignment 3 - Report}
-% \author{\normalsize Bruno Sánchez \& Jean Dié}
+\author{\normalsize Bruno Sánchez \& Jean Dié}
 \date{\small 15th December 2024}
 
 \maketitle
@@ -539,7 +539,6 @@ Four of these 3D plots are presented in Figure \ref{fig:3d_plots} for visualizat
     \label{fig:3d_plots}
 \end{figure}
 
-
 \section{Task 4: Testing the System}
 
 % Test the fuzzy expert system with four different websites.
@@ -547,10 +546,66 @@ Four of these 3D plots are presented in Figure \ref{fig:3d_plots} for visualizat
 % - Ensure some cases activate more than one label of the same variable.
 % Report the results with explanations and screenshots.
 
+To evaluate the performance and reliability of the fuzzy expert system, we conducted tests using four different websites. These test cases were carefully selected (or created) to represent various scenarios, ensuring a diverse range of inputs and outputs. The objective was to analyze the system's behavior under different conditions and validate that the output aligns with expectations.
+
+Each test case includes specific input values for the five input variables, with some cases intentionally designed to activate more than one membership label for the same variable. This approach ensures the system utilizes multiple rules to compute the output (\textit{Phishing Risk}), demonstrating the effectiveness of the rule base and inference mechanism.
+
 \subsection{Test Cases}
 
 % Describe each test case in detail.
 % Include input values and expected outcomes.
+
+The following test cases describe the input values and expected outcomes for the fuzzy expert system:
+
+\begin{itemize}
+    \item \textbf{Test Case 1: Legitimate Website}
+    
+    This case represents a legitimate website with benign characteristics. The input values were selected to reflect a low likelihood of phishing activity:
+    \begin{itemize}
+        \item \textit{Ratio of Null Hyperlinks}: 5\%
+        \item \textit{Number of External CSS}: 15 files
+        \item \textit{Domain Registration Length}: 8 years
+        \item \textit{Web Traffic}: 85-th percentile
+        \item \textit{Page Rank}: 2.5 popularity score
+    \end{itemize}
+    \textbf{Expected Outcome:} Low \textit{Phishing Risk}.
+    
+    \item \textbf{Test Case 2: Suspicious Website}
+    
+    This case simulates a borderline suspicious website with mixed indicators:
+    \begin{itemize}
+        \item \textit{Ratio of Null Hyperlinks}: 40\%
+        \item \textit{Number of External CSS}: 3 files
+        \item \textit{Domain Registration Length}: 4 years
+        \item \textit{Web Traffic}: 65-th percentile
+        \item \textit{Page Rank}: 4.8 popularity score
+    \end{itemize}
+    \textbf{Expected Outcome:} Medium \textit{Phishing Risk}.
+
+    \item \textbf{Test Case 3: Phishing Website}
+    
+    This case reflects a highly suspicious phishing website with characteristics strongly indicative of phishing activity:
+    \begin{itemize}
+        \item \textit{Ratio of Null Hyperlinks}: 85\%
+        \item \textit{Number of External CSS}: 1 file
+        \item \textit{Domain Registration Length}: 1 year
+        \item \textit{Web Traffic}: 18-th percentile
+        \item \textit{Page Rank}: 8.2 popularity score
+    \end{itemize}
+    \textbf{Expected Outcome:} High \textit{Phishing Risk}.
+    
+    \item \textbf{Test Case 4: Ambiguous Website}
+    
+    This case represents an ambiguous website with conflicting indicators that activate multiple rules:
+    \begin{itemize}
+        \item \textit{Ratio of Null Hyperlinks}: 50\%
+        \item \textit{Number of External CSS}: 2 files
+        \item \textit{Domain Registration Length}: 6 years
+        \item \textit{Web Traffic}: 80-th percentile
+        \item \textit{Page Rank}: 2.1 popularity score
+    \end{itemize}
+    \textbf{Expected Outcome:} Medium \textit{Phishing Risk}.
+\end{itemize}
 
 \subsection{Results and Discussion}
 

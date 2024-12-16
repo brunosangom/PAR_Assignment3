@@ -546,7 +546,7 @@ Four of these 3D plots are presented in Figure \ref{fig:3d_plots} for visualizat
 % - Ensure some cases activate more than one label of the same variable.
 % Report the results with explanations and screenshots.
 
-To evaluate the performance and reliability of the fuzzy expert system, we conducted tests using four different websites. These test cases were carefully selected (or created) to represent various scenarios, ensuring a diverse range of inputs and outputs. The objective was to analyze the system's behavior under different conditions and validate that the output aligns with expectations.
+To evaluate the performance and reliability of the fuzzy expert system, we conducted tests using four different websites. These test cases were carefully created to represent various scenarios, ensuring a diverse range of inputs and outputs. The objective was to analyze the system's behavior under different conditions and validate that the output aligns with expectations.
 
 Each test case includes specific input values for the five input variables, with some cases intentionally designed to activate more than one membership label for the same variable. This approach ensures the system utilizes multiple rules to compute the output (\textit{Phishing Risk}), demonstrating the effectiveness of the rule base and inference mechanism.
 
@@ -611,6 +611,79 @@ The following test cases describe the input values and expected outcomes for the
 
 % Present the outputs of the system for each test case.
 % Show activations of rules and explain the results.
+
+The following results demonstrate the system's behavior for each of the test cases. Rules activated during the inference process and the corresponding \textit{Phishing Risk} outputs are presented for each case.  
+
+\begin{itemize}
+    \item \textbf{Test Case 1: Legitimate Website}
+    \begin{itemize}
+        \item \textit{Rules activated:} 28, 29, 30
+        \item \textit{Phishing risk:} 11.0 (Safe)
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        % Replace with actual plot file names
+        \includegraphics[width=0.99\textwidth]{figures/Activations_Test1.png}
+        \\
+        \hfill
+        \includegraphics[width=0.20\textwidth]{figures/Output_Test1(11).png}
+        \caption{Rules activation and output for Test Case 1.}
+        \label{fig:test1}
+    \end{figure}
+    For this case, the system activated rules 28, 29, and 30, which primarily correspond to input variables indicating a low risk of phishing. The resulting \textit{Phishing Risk} value is \textbf{11.0}, categorizing the website as \textit{Safe}. The surface plot confirms the expected behavior, as all inputs align with low-risk labels.  
+
+    \item \textbf{Test Case 2: Suspicious Website}
+    \begin{itemize}
+        \item \textit{Rules activated:} 1, 14, 22
+        \item \textit{Phishing risk:} 55.3 (Strongly suspicious)
+    \end{itemize}    
+    \begin{figure}[H]
+        \centering
+        % Replace with actual plot file names
+        \includegraphics[width=0.99\textwidth]{figures/Activations_Test2.png}
+        \\
+        \hfill
+        \includegraphics[width=0.20\textwidth]{figures/Output_Test2(55-3).png}
+        \caption{Rules activation and output for Test Case 2.}
+        \label{fig:test2}
+    \end{figure}
+    Here, rules 1, 14, and 22 were activated, reflecting medium input values for various variables. The output \textit{Phishing Risk} is \textbf{55.3}, categorizing the website as \textit{Strongly Suspicious}. This result is consistent with the rule base, where medium risk variables combine to produce a moderately high output.  
+
+    \item \textbf{Test Case 3: Phishing Website}
+    \begin{itemize}
+        \item \textit{Rules activated:} 1, 10
+        \item \textit{Phishing risk:} 74.0 (0.1 Strongly suspicious, 0.9 Phishing)
+    \end{itemize}    
+    \begin{figure}[H]
+        \centering
+        % Replace with actual plot file names
+        \includegraphics[width=0.99\textwidth]{figures/Activations_Test3.png}
+        \\
+        \hfill
+        \includegraphics[width=0.20\textwidth]{figures/Output_Test3(74).png}
+        \caption{Rules activation and output for Test Case 3.}
+        \label{fig:test3}
+    \end{figure}
+    In this case, rules 1 and 10 were triggered, primarily due to high-risk indicators across all input variables. The system computed a \textit{Phishing Risk} of \textbf{74.0}, mostly categorizing the website as \textit{Phishing}. The activation of high-risk membership functions and rules aligns with expectations, as the inputs strongly suggest phishing activity.  
+
+    \item \textbf{Test Case 4: Ambiguous Website}
+    \begin{itemize}
+        \item \textit{Rules activated:} 1, 29, 30
+        \item \textit{Phishing risk:} 55.7 (Strongly suspicious)
+    \end{itemize}    
+    \begin{figure}[H]
+        \centering
+        % Replace with actual plot file names
+        \includegraphics[width=0.99\textwidth]{figures/Activations_Test4.png}
+        \\
+        \hfill
+        \includegraphics[width=0.20\textwidth]{figures/Output_Test4(55-7).png}
+        \caption{Rules activation and output for Test Case 4.}
+        \label{fig:test4}
+    \end{figure}
+    For this ambiguous case, rules 1, 29, and 30 were activated. The inputs include both high and low-risk indicators, leading to a \textit{Phishing Risk} of \textbf{55.7}. The output categorizes the website as \textit{Strongly Suspicious}. This result highlights the system's ability to handle conflicting inputs, as multiple rules contribute to the final output.
+    
+\end{itemize}
 
 \section{Task 5: Design of an Enhanced Fuzzy Expert System}
 

@@ -1,5 +1,4 @@
 \documentclass{article}
-\usepackage[backend=biber,style=authoryear]{biblatex}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{geometry}
@@ -12,9 +11,10 @@
 \usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{colortbl}
+\usepackage{afterpage}
 \usepackage{xcolor}
+\usepackage[backend=biber, style=ieee]{biblatex} 
 \definecolor{lightgray}{RGB}{245,245,245}
-
 
 \addbibresource{references.bib}
 
@@ -687,25 +687,54 @@ The following results demonstrate the system's behavior for each of the test cas
 
 \section{Task 5: Design of an Enhanced Fuzzy Expert System}
 
-% Question: How to visualize this?
-% Propose a design for a more comprehensive fuzzy expert system.
-% - Include more features about websites.
-% - Illustrate inputs, outputs, and rule blocks in a diagram.
-% Note: No specific variable definitions or rules are required.
+To enhance the phishing detection capabilities, we propose a hierarchical fuzzy expert system that processes website features through multiple specialized analysis layers. Figure~\ref{fig:enhanced_architecture} illustrates this enhanced architecture:
 
-\subsection{Proposed System Architecture}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/system_architecture.png}
+    \caption{Enhanced Hierarchical Fuzzy Expert System Architecture}
+    \label{fig:enhanced_architecture}
+\end{figure}
 
-% Describe the proposed enhancements and their benefits.
-% Include a figure illustrating the system.
+For a more detailed view of the system architecture, the reader may refer to the rotated version of the diagram on the \textbf{last page of this report} (Figure~\ref{fig:rotated_architecture}).
+
+The proposed architecture follows a four-level hierarchical structure, systematically refining the analysis of website characteristics to improve phishing detection. This design ensures that information flows progressively, with each level contributing to a deeper and more nuanced understanding of potential threats.
+
+At the \textbf{first level}, the system processes raw inputs by focusing on three complementary perspectives: \textit{URL analysis}, \textit{content evaluation}, and \textit{external verification}. Each channel addresses distinct dimensions of website legitimacy, capturing structural details, embedded resources, and external reputation metrics. By combining these perspectives, the system lays a comprehensive foundation for detecting phishing indicators.
+
+In the \textbf{second level}, feature analysis becomes more granular through dedicated processing modules. The \textit{URL component} examines structural properties, such as IP usage, port presence, and SSL certificate validity, alongside statistical patterns like character distributions and word anomalies. \textit{Content analysis} dives into hyperlink behavior, security indicators (e.g., login forms and iFrames), and language consistency to identify suspicious textual anomalies. Finally, \textit{external verification} evaluates domain registration history, web traffic data, and blacklist status using trusted sources. This modular breakdown enhances feature extraction while enabling specialized analysis that goes beyond traditional single-layer systems.
+
+The \textbf{third level} introduces a stratified rule evaluation mechanism, which assigns risk profiles to detected patterns. High-risk rules flag explicit phishing indicators, while medium-risk and low-risk rules identify subtle or ambiguous feature combinations. This layered approach not only improves detection granularity but also reduces false positives by carefully balancing strict rules with adaptive thresholds.
+
+At the \textbf{final level}, the system integrates the outputs of prior layers into a unified risk assessment. By aggregating risk scores and analyzing interactions across the channels, the system delivers both a \textit{numerical risk score} and a \textit{categorical classification} (e.g., Safe, Suspicious, Phishing). This dual-output format ensures flexibility for integration into various security workflows.
+
+The hierarchical design represents a significant improvement over our previous flat architectures. By progressively refining the analysis, the system achieves greater accuracy and robustness without introducing excessive complexity. Intermediate aggregation nodes streamline the rule evaluation process, while the clear separation of concerns enhances maintainability. In addition, the modular structure accommodates the integration of emerging detection techniques, such as SSL certificate analysis, advanced language processing, or blacklist verification, ensuring adaptability to evolving phishing tactics.
 
 \section{Conclusion}
 
-% Summarize the work done.
-% Reflect on the effectiveness of the fuzzy expert system.
-% Discuss potential improvements and future work.
+In this project, a fuzzy expert system was developed to classify websites based on their risk of phishing using a combination of linguistic variables, rule-based reasoning, and fuzzy logic techniques. The system successfully integrates structural, content-based and external features to provide a nuanced evaluation of the legitimacy of the website.
 
-% \appendix
+The proposed architecture incorporates a four-level hierarchical design that progressively refines the feature analysis and risk assessment. Using specialized processing at each level, the system overcomes the limitations of flat, single-layered approaches, enabling improved detection accuracy and flexibility. The rule base, constructed with 35 conjunctive rules, effectively captures combinations of characteristics to differentiate between safe, weakly suspicious, strongly suspicious, and phishing websites.
 
+Testing across diverse scenarios demonstrated the system's robustness in handling conflicting inputs and ambiguous cases. The system outputs both a numerical risk score and a categorical classification, ensuring flexibility for integration into various security applications. The use of the MATLAB Fuzzy Logic Toolkit further validated the system's behavior through visualized rule activations and 3D surface plots.
+
+The enhanced design presented in Task 5 highlights the potential for future improvements by incorporating additional features such as SSL certificate analysis, language consistency, and blacklist verification. This modular and adaptive design ensures the system's ability to evolve alongside emerging phishing tactics.
+
+In general, the fuzzy expert system provides a solid foundation for phishing detection, combining interpretability, accuracy, and extensibility. Future work could explore hybrid approaches with machine learning techniques and real-time feature extraction to further enhance the system's performance in dynamic environments.
+
+\newpage
 \printbibliography
+
+\newpage
+
+\begin{figure}[t]
+    \centering
+    \rotatebox{90}{%
+        \includegraphics[height=0.40\textheight]{figures/system_architecture.png}
+    }
+    \caption{Rotated Enhanced Hierarchical Fuzzy Expert System Architecture for Better View}
+    \label{fig:rotated_architecture}
+\end{figure}
+\vfill
 
 \end{document}
